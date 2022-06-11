@@ -1,0 +1,61 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div><h1 class="mt-5 mb-5">Welcome {{request.user}}</h1></div>
+
+            {% if messages %}
+            {%for message in messages%}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="bg-info">
+                        {{message}}
+                    </div>
+                {%endif%}
+            {%endfor%}
+        {% endif %}
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 mt-5">
+            <form action="" method="get">
+                <div class="row mb-5">
+                    <div class="col-4">Posted by: {{filter.form.posted_by}}</div>
+                    <div class="col-4">Job title: {{filter.form.job_title}}</div>
+                    <div class="col-4">Salary: {{filter.form.salary}}</div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-4"></div>
+                    <div class="col-4 mt-3">
+                        <input type="submit" value="submit" class="btn btn-primary">
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row">
+        {%for job in filter.qs%}
+            <div class="col-4">
+                <div class="card mt-5" style="background-color:#90EE90">
+                    <div class="card-body">
+                        <h5 class="card-title">{{job.job_title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Experience: {{job.experience}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Posted By: {{job.posted_by}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Post Date: {{job.posted_date}}</h6>
+                        <a href="{%url 'candjobview' job.id%}" class="btn btn-outline-danger">View</a>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+    </div>
+
+{%endblock%}

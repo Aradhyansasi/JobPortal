@@ -1,0 +1,28 @@
+{%extends 'base1.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 mt-4">
+        <div class="card" style="width: 18rem;">
+      <img src="{{prof.applicant.candidates.pro_pic.url}}" class="card-img-top" alt="error">
+      <div class="card-body">
+        <h5 class="card-title">Name:  {{prof.applicant.candidates.user}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Qualification: {{prof.applicant.candidates.qualification}}</li>
+        <li class="list-group-item">Age: {{prof.applicant.candidates.age}}</li>
+        <li class="list-group-item">Skills: {{prof.applicant.candidates.skills}}</li>
+        <li class="list-group-item">cv: <a href="{{prof.applicant.candidates.cv.url}}">{{prof.applicant.candidates.cv}}</a></li>
+        <li class="list-group-item">
+            <a href="{%url 'accept' prof.id%}" class="btn btn-success ms-5">Accept</a>
+            <a href="{%url 'reject' prof.id%}" class="btn btn-danger ms-2">Decline</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div class="col-4"></div>
+</div>
+{%endblock%}

@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 mt-3 mb-3">
+        <div class="card" style="width: 18rem;">
+            <img src="{{request.user.candidates.pro_pic.url}}" class="card-img-top" alt="error">
+            <div class="card-body">
+                <h5 class="card-title">Name:  {{request.user}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Qualification:{{request.user.candidates.qualification}}</li>
+                <li class="list-group-item">Age: {{request.user.candidates.age}}</li>
+                <li class="list-group-item">Skills: {{request.user.candidates.skills}}</li>
+                <li class="list-group-item">cv: {{request.user.candidates.cv}}</li>
+            </ul>
+            <div class="card-body">
+                <a href="{%url 'candproedit' request.user.candidates.id%}" class="card-link btn btn-outline-warning">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>
+{%endblock%}

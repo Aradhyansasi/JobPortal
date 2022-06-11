@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+         {%if applied%}
+        {%for app in applied%}
+        <div class="card mt-3" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{app.job.job_title}}</h5>
+            <p class="card-text">{{app.job.job_description}}</p>
+            <h6 class="card-subtitle mb-2 text-muted">Applied Date: {{app.date}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Salary: {{app.job.salary}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Experience: {{app.job.experience}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Status: {{app.status}}</h6>
+          </div>
+        </div>
+        {%endfor%}
+        {%else%}
+                <h3 class="mt-5"> Not Applied for jobs</h3>
+           {%endif%}
+      </div>
+      <div class="col-4"></div>
+    </div>
+{%endblock%}

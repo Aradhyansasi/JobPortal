@@ -1,0 +1,51 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+    <div class="row ms-5 mt-5">
+        {%for job in candiJobs%}
+            <div class="col-4 mt-5 ms-5">
+                <div class="card " style="background-color:#90EE90">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">{{job.job_title}}</h5>
+                        <h6 class="card-subtitle p-3 text-muted">Experience: {{job.job_title}}</h6>
+                        <h6 class="card-subtitle p-3 text-muted">Posted By: {{job.experience}}</h6>
+                        <h6 class="card-subtitle p-3 text-muted">Post Date: {{job.posted_date}}</h6>
+                        <a href="{%url 'candjobview' job.id%}" class="btn btn-outline-danger mt-2 mb-2">View</a>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+    </div>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 mt-5">
+
+        {% for contact in page_obj %}
+    {# Each "contact" is a Contact model object. #}
+    {{ contact.full_name|upper }}<br>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    </div>
+    <div class="col-4"></div>
+</div>
+{%endblock%}

@@ -1,0 +1,38 @@
+{%extends 'base1.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-12 mt-5">
+
+            <table class="table mt-3">
+                <tr class="table-info">
+                    <th>Job Title</th>
+                    <th>Experience</th>
+                    <th>Post Date</th>
+                    <th></th>
+                    <th></th>
+                    <th>Action</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {%for job in jobs%}
+                    <tr class="table-danger">
+                        <td>{{job.job_title}}</td>
+                        <td>{{job.experience}}</td>
+                        <td>{{job.posted_date}}</td>
+                        <td><a href="{%url 'empjobdetail' job.id%}" class="btn btn-info">Details</a></td>
+                        <td><a href="{%url 'empjobedit' job.id%}" class="btn btn-warning">Edit</a></td>
+                        <td><a href="{%url 'empjobdelete' job.id%}" class="btn btn-danger">Delete</a></td>
+                        <td><a href="{%url 'empviewapplcn' job.id%}" class="btn btn-success">View Applications</a></td>
+<!--                        <td><a href="" class="btn btn-dark">Accepted Applications</a></td>-->
+                     </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+{%endblock%}

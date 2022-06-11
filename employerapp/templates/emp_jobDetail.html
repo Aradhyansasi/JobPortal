@@ -1,0 +1,26 @@
+{%extends 'base1.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+      <img src="{{request.user.employer.logo.url}}" class="card-img-top" alt="error">
+      <div class="card-body">
+        <h5 class="card-title">{{request.user}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Posted By: {{job.posted_by}}</li>
+        <li class="list-group-item">Job Title: {{job.job_title}}</li>
+        <li class="list-group-item">Description: {{job.job_description}}</li>
+        <li class="list-group-item">Date: {{job.posted_date}}</li>
+         <li class="list-group-item">Salary: {{job.salary}}</li>
+        <li class="list-group-item">Experience: {{job.experience}}</li>
+      </ul>
+    </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+{%endblock%}

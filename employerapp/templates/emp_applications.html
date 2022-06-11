@@ -1,0 +1,27 @@
+{%extends 'base1.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 mt-5">
+           {%if application%}
+            {%for app in application%}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">Applicants for <b>{{app.job.job_title}}</b></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Candidate name: {{app.applicant}}</li>
+                        <li class="list-group-item">Applied Date: {{app.date}}</li>
+                        <li class="list-group-item">CV link: {{app.applicant.candidates.cv}}</li>
+                        <a href="{%url 'candi_profile' app.id%}" class="btn btn-primary">View Profile</a>
+                    </ul>
+                </div>
+            {%endfor%}
+           {%else%}
+                <h3 class="mt-5"> No New Applications</h3>
+           {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+{%endblock%}

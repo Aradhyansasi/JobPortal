@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+    <div class="row mt-4">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card bg-dark text-black fw-semibold">
+                <img src="{{job.posted_by.employer.logo.url}}" class="card-img" alt="" height="500px" width="500px">
+                <div class="card-img-overlay mt-4">
+                    <h5 class="card-title"><b>{{job.job_title}}</b></h5>
+                    <p class="card-text">{{job.job_description}}</p>
+                    <p class="card-text">Salary: {{job.salary}}</p>
+                    <p class="card-text">Experience: {{job.experience}}</p>
+                    <p class="card-text">Date: {{job.posted_date}}</p>
+                    {%if request.user.is_candidate%}
+                    {%if app%}
+                    <a href="#" class="btn btn-danger mt-5">Applied</a>
+                    {%else%}
+                    <a href="{%url 'candiapplynow' job.id%}" class="btn btn-outline-danger mt-5"><b>Apply now</b></a>
+                    {%endif%}
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+{%endblock%}
